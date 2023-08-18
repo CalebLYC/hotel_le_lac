@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    public function admin(){
+        $comments = Comment::all();
+        return view('admin.pages.comments', ['comments' => $comments]);
+    }
+
     public function store(Request $request){
         $request->validate([
             'content' => 'required',
@@ -20,7 +25,7 @@ class CommentController extends Controller
         return redirect()->back()->with('success', 'Merci pour votre commentaire');
     }
 
-    public function delete(String $id){
+    public function destroy(String $id){
         $comment = Comment::findOrFail($id);
         $comment->delete();
     }

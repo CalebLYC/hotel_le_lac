@@ -85,9 +85,6 @@
 
     @yield('content')
 
-    @include('admin.partials.footer')
-
-
     <!-- jQery -->
     <script src="{{ asset('assets/admin/js/jquery-3.4.1.min.js') }}"></script>
     <!-- bootstrap js -->

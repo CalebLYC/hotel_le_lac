@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2023 at 11:22 AM
+-- Generation Time: Aug 15, 2023 at 07:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -58,6 +58,15 @@ CREATE TABLE `comments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
+(3, 1, ' Que ce soit pour des tests unitaires ou des tests de performances, utiliser une génération de données aléatoire peut être très intéressant. Cela peut permettre d’écrire des tests plus « dynamiques » (i.e. les données de tests sont nouvelles à chaque exécution) et donc de tester de potentiels « nouveaux cas », à chaque execution des tests.', NULL, NULL),
+(4, 2, ' Que ce soit pour des tests unitaires ou des tests de performances, utiliser une génération de données aléatoire peut être très intéressant. Cela peut permettre d’écrire des tests plus « dynamiques » (i.e. les données de tests sont nouvelles à chaque exécution) et donc de tester de potentiels « nouveaux cas », à chaque execution des tests.', NULL, NULL),
+(5, 3, 'Que ce soit pour des tests unitaires ou des tests de performances, utiliser une génération de données aléatoire peut être très intéressant. Cela peut permettre d’écrire des tests plus « dynamiques » (i.e. les données de tests sont nouvelles à chaque exécution) et donc de tester de potentiels « nouveaux cas », à chaque execution des tests.', '2023-08-15 16:00:53', '2023-08-15 16:00:53');
+
 -- --------------------------------------------------------
 
 --
@@ -74,6 +83,14 @@ CREATE TABLE `events` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `name`, `description`, `date`, `image_url`, `video_url`, `created_at`, `updated_at`) VALUES
+(1, 'Evènement1', 'Le format de date carbone est YYYY-MM-DDTHH:mm:ss.sssZ, où YYYY représente l\'année, MM représente le mois, DD représente le jour, T représente le délimiteur entre la date et l\'heure, HH représente l\'heure en format 24 heures, mm représente les minutes, ss.sss représente les secondes et les millisecondes, et Z représente le fuseau horaire.', '2023-08-02', NULL, NULL, NULL, NULL),
+(2, 'Evènement2', 'Le format de date carbone est YYYY-MM-DDTHH:mm:ss.sssZ, où YYYY représente l\'année, MM représente le mois, DD représente le jour, T représente le délimiteur entre la date et l\'heure, HH représente l\'heure en format 24 heures, mm représente les minutes, ss.sss représente les secondes et les millisecondes, et Z représente le fuseau horaire.', '2023-08-23', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,7 +133,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2023_08_05_182513_create_rooms_table', 1),
 (7, '2023_08_05_182603_create_bookings_table', 1),
 (8, '2023_08_05_182614_create_comments_table', 1),
-(9, '2023_08_05_182623_create_events_table', 1);
+(9, '2023_08_05_182623_create_events_table', 1),
+(10, '2023_08_15_163037_create_events_table', 2),
+(11, '2023_08_15_163922_create_events_table', 3);
 
 -- --------------------------------------------------------
 
@@ -214,7 +233,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role_id`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Caleb LYC', 'caleblyc@gmail.com', NULL, '$2y$10$icKCbed/E6bP1yurUGSkHei7yG8rJT/xgYfXmbETOiOOgtOe19tFO', NULL, NULL, '2023-08-08 09:07:45', '2023-08-08 09:07:45');
+(1, 'Caleb LYC', 'caleblyc@gmail.com', NULL, '$2y$10$icKCbed/E6bP1yurUGSkHei7yG8rJT/xgYfXmbETOiOOgtOe19tFO', NULL, NULL, '2023-08-08 09:07:45', '2023-08-08 09:07:45'),
+(2, 'Caleb LYC', 'calebly@gmail.com', NULL, '$2y$10$LOx1oD1KTBOBOKbdc9Tf3edG.TygZeefAdUx5xJdlQx1uNv6t3plO', NULL, NULL, '2023-08-09 20:32:28', '2023-08-09 20:32:28'),
+(3, 'EXAMPLE', 'guel@gmail.com', NULL, '$2y$10$Ev.71.pcbvJHiVGr4eaJi.cy0SbGKMj/dmKbU77myA5uojXaEqTVm', NULL, NULL, '2023-08-15 15:55:07', '2023-08-15 15:55:07');
 
 --
 -- Indexes for dumped tables
@@ -302,13 +323,13 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -320,7 +341,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -344,7 +365,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

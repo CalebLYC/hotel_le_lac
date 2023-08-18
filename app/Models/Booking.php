@@ -16,11 +16,11 @@ class Booking extends Model
         'checkout_date',
     ];
 
-    public function users(){
-        return $this->hasMany(User::class);
+    public function user(){
+        return $this->hasOne(User::class, 'id');
     }
 
-    public function rooms(){
-        return $this->hasMany(Room::class);
+    public function room(){
+        return $this->hasOne(Room::class, 'id');
     }
 }

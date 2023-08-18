@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public function admin(){
+        $rooms = Room::all();
+        return view('admin.pages.rooms', ['rooms' => $rooms]);
+    }
+
     public function index(){
         $rooms = Room::all();
         return view('pages.rooms', ['rooms' => $rooms]);
@@ -17,13 +22,13 @@ class RoomController extends Controller
     }
 
     public function store(Request $request){
-        $request::validate([
+        $request->validate([
             'name' => 'required',
             'nbr_lits' => 'required|integer',
             'nbr_bains' => 'required|integer',
-            'nbr_stars' => 'required|integer',
+            //'nbr_stars' => 'required|integer',
             'description' => 'required|max: 255',
-            'prix' => 'required|float',
+            'prix' => 'required',
             'image' => 'required',
         ]);
 
@@ -39,7 +44,7 @@ class RoomController extends Controller
                 'name' => $request->name,
                 'nbr_lits' => $request->nbr_lits,
                 'nbr_bains' => $request->nbr_bains,
-                'nbr_stars' => $request->nb_stars,
+                'nbr_stars' => 5,
                 'description' => $request->description,
                 'prix' => $request->prix,
                 'image_url' => $path,
@@ -96,7 +101,7 @@ class RoomController extends Controller
         return redirect()->route('rooms.index')->with('success', 'Chambre mise à jour avec succès');
     }
 
-    public function delete(String $id){
+    public function destroy(String $id){
         $room = Room::findOrFail($id);
         $room->delete();
         return redirect()->route('rooms.index')->with('success', 'Chambre supprimée à jour avec succès');

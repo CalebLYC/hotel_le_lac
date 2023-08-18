@@ -72,8 +72,8 @@
                                 </div>
                                 <div class="input-box">
                                     <i class="fas fa-lock"></i>
-                                    <input name='pass' type="password" placeholder="Enter your password"
-                                        name="password" value="{{ old('password') }}" required>
+                                    <input type="password" placeholder="Enter your password" name="password"
+                                        value="{{ old('password') }}" required>
                                     @error('password')
                                         <div class="alert alert-danger">
                                             {{ $message }}

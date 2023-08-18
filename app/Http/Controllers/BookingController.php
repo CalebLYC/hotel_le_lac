@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    public function admin(){
+        $bookings = Booking::all();
+        return view('admin.pages.bookings', ['bookings' => $bookings]);
+    }
+
     public function index(){
         $reservations = Booking::all();
         return view('admin.pages.bookings', ['bookings' => $reservations]);
@@ -52,7 +57,7 @@ class BookingController extends Controller
         return redirect()->route('rooms.index')->with('success', 'Réservation effectuée avec succèss');
     }
 
-    public function delete(String $id){
+    public function destroy(String $id){
         $booking = Booking::findOrFail($id);
         $booking->delete();
         return redirect()->route('rooms.index')->with('success', 'Réservation annulée avec succèss');

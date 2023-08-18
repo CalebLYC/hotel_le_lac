@@ -2,7 +2,7 @@
 <header class="header_section">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-            <a class="navbar-brand" href="welcome_admin.php ">
+            <a class="navbar-brand" href="{{ route('admin.index') }}">
                 <span>
                     Hotel le lac
                 </span>
@@ -17,13 +17,13 @@
                     </button>
                     <div id="myNav" class="overlay">
                         <div class="overlay-content">
-                            <a href="welcome_admin.pphp">Accueil</a>
-                            <a href="Pages/Action/rooms_admin.php">Chambres</a>
-                            <a href="Pages/Action/events_admin.php">Evènements</a>
-                            <a href="Pages/Action/profile_admin.php">Profile</a>
-                            <a href="Pages/Action/profile_admin.php">Se Déconnecter</a>
-
-
+                            <a href="{{ route('admin.index') }}">Accueil</a>
+                            <a href="{{ route('admin.rooms.index') }}">Chambres</a>
+                            <a href="{{ route('admin.bookings.index') }}">Réservations</a>
+                            <a href="{{ route('admin.events.index') }}">Evènements</a>
+                            <a href="{{ route('admin.comments.index') }}">Commentaires</a>
+                            <a href="{{ route('dashboard') }}">Profile</a>
+                            <a href="{{ route('dashboard') }}">Se Déconnecter</a>
                         </div>
                     </div>
                 </div>

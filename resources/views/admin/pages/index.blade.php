@@ -8,21 +8,21 @@
                 <div class="carousel-item active">
                     <div class="img_container">
                         <div class="img-box">
-                            <img src="images/slider-bg.jpg" class="" alt="...">
+                            <img src="{{ asset('images/slider-bg.jpg') }}" class="" alt="...">
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="img_container">
                         <div class="img-box">
-                            <img src="images/slider-bg.jpg" class="" alt="...">
+                            <img src="{{ asset('images/slider-bg.jpg') }}" class="" alt="...">
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="img_container">
                         <div class="img-box">
-                            <img src="images/slider-bg.jpg" class="" alt="...">
+                            <img src="{{ asset('images/slider-bg.jpg') }}" class="" alt="...">
                         </div>
                     </div>
                 </div>
@@ -71,58 +71,55 @@
                     Chambres
                 </h2>
             </div>
-            <div class="row">
-                <div class=" col-sm-8 col-md-6 px-0">
-                    <div class="img-box">
-                        <img src="images/g1.jpg" alt="">
-                        <a href="images/g1.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
+            <div class="container row g-4">
+                @forelse ($rooms as $room)
+                    <div class="col-lg-4 col-md-6 mb-5" data-wow-delay="0.6s" style="width: 200px; height: 300px;">
+                        <div class="shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" style="width:100%; height: 200px; object-fit:cover;"
+                                    src="{{ Storage::url($room->image_url) }}" alt="">
+                            </div>
+                            <div class="pl-3">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">{{ $room->name }}</h5>
+                                    <div class="">
+                                        @for ($i = 0; $i < $room->nbr_stars; $i++)
+                                            <small class="fa fa-star text-primary"></small>
+                                        @endfor
+                                        @for ($i = 0; $i < 5 - $room->nbr_stars; $i++)
+                                            <small class="fa fa-star text-white"></small>
+                                        @endfor
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <small class="border-end me-3 pe-3">
+                                        <i class="fa fa-bed text-primary me-2"></i>
+                                        {{ $room->nbr_lits }}lits
+                                    </small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>
+                                        {{ $room->nbr_bains }}bains</small>
+                                    <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" href=""
+                                        style="cursor: pointer;">Modifier</a>
+                                    <button class="btn btn-sm btn-danger rounded py-2 px-4" style="cursor: pointer;"
+                                        onclick='document.getElementById("delete{{ $room->id }}").submit()'>Supprimer</button>
+                                    <form action="{{ route('rooms.destroy', ['id' => $room->id]) }}" method="post"
+                                        id="delete{{ $room->id }}">
+                                        @method('delete')
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4 col-md-3 px-0">
-                    <div class="img-box">
-                        <img src="images/g2.jpg" alt="">
-                        <a href="images/g2.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 px-0">
-                    <div class="img-box">
-                        <img src="images/g3.jpg" alt="">
-                        <a href="images/g3.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3 px-0">
-                    <div class="img-box">
-                        <img src="images/g4.jpg" alt="">
-                        <a href="images/g4.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-4 col-md-3 px-0">
-                    <div class="img-box">
-                        <img src="images/g5.jpg" alt="">
-                        <a href="images/g5.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-8 col-md-6 px-0">
-                    <div class="img-box">
-                        <img src="images/g6.jpg" alt="">
-                        <a href="images/g6.jpg" data-toggle="lightbox" data-gallery="gallery">
-                            <i class="fa fa-picture-o" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
+                @empty
+                    <div class="text-center ml-5">Aucune chambre ajoutée</div>
+                @endforelse
             </div>
             <div class="btn-box">
-                <a href="">
+                <a href="{{ route('admin.index') }}">
                     Voir Plus
                 </a>
             </div>

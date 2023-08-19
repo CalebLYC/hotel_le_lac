@@ -119,7 +119,7 @@
                 @endforelse
             </div>
             <div class="btn-box">
-                <a href="{{ route('admin.index') }}">
+                <a href="{{ route('admin.rooms.index') }}" class="mt-5">
                     Voir Plus
                 </a>
             </div>

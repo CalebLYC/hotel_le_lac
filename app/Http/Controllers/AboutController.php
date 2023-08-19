@@ -15,4 +15,16 @@ class AboutController extends Controller
         $comments = Comment::all();
         return view('welcome', ['rooms' => $rooms, 'events' => $events, 'comments' => $comments]);
     }
+
+    public function services(){
+        $events = Event::latest()->take(5)->get();
+        $comments = Comment::all();
+        return view('pages.service', ['events' => $events, 'comments' => $comments]);
+    }
+
+    public function about(){
+        $events = Event::latest()->take(5)->get();
+        $comments = Comment::all();
+        return view('pages.about', ['events' => $events, 'comments' => $comments]);
+    }
 }

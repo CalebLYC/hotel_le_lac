@@ -39,29 +39,27 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="{{ route('welcome') }}" class="nav-item nav-link active">Accueil</a>
-                        <a href="{{ route('about') }}" class="nav-item nav-link">A Propos</a>
-                        <a href="{{ route('services') }}" class="nav-item nav-link">Services</a>
-                        <a href="{{ route('rooms.index') }}" class="nav-item nav-link">Chambres</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="{{ route('team') }}" class="dropdown-item">Le Personnel</a>
-                                <a href="{{ route('testimonials') }}" class="dropdown-item">Témoignages</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="{{ route('welcome') }}"
+                            class="nav-item nav-link {{ request()->routeIs('welcome') ? 'active' : '' }}">Accueil</a>
+                        <a href="{{ route('about') }}"
+                            class="nav-item nav-link {{ request()->routeIs('about') ? 'active' : '' }}">A Propos</a>
+                        <a href="{{ route('services') }}"
+                            class="nav-item nav-link {{ request()->routeIs('services') ? 'active' : '' }}">Services</a>
+                        <a href="{{ route('rooms.index') }}"
+                            class="nav-item nav-link {{ request()->routeIs('rooms.index') ? 'active' : '' }}">Chambres</a>
                     </div>
                     @auth
                         <a href="{{ route('dashboard') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
                             Tableau de bord<i class="fa fa-arrow-right ms-3"></i></a>
-                    @else
-                        <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">
-                            se Connecter<i class="fa fa-arrow-right ms-3"></i></a>
-                    @endauth
-                </div>
-            </nav>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block nav-item nav-link">
+                        se Connecter<i class="fa fa-arrow-right ms-3"></i></a>
+                @endauth
         </div>
+        </nav>
     </div>
+</div>
 </div>
 <!-- Header End -->

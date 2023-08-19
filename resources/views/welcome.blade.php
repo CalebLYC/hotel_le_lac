@@ -13,10 +13,19 @@
                                 Luxe</h6>
                             <h1 class="display-3 text-white mb-4 animated slideInDown">Découvrez un hôtel de luxe
                             </h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Nos
+                            <a href="{{ route('rooms.index') }}"
+                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Nos
                                 Chambres</a>
-                            <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Réserver
+                            <a href="{{ route('rooms.index') }}"
+                                class="btn btn-light py-md-3 px-md-5 animated slideInRight bookingLink">Réserver
                                 une chambre</a>
+                            @auth
+                                <a href="{{ route('dashboard') }}"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight loginLink">Tableau de bord</a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight loginLink">Se connecter</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -31,11 +40,15 @@
 
                             </h1>
                             <a href="{{ route('rooms.index') }}"
-                                class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Nos
-                                Chambres</a>
-                            <a href="{{ route('rooms.index') }}"
-                                class="btn btn-light py-md-3 px-md-5 animated slideInRight">Réserver
+                                class="btn btn-light py-md-3 px-md-5 animated slideInRight bookingLink">Réserver
                                 une chambre</a>
+                            @auth
+                                <a href="{{ route('dashboard') }}"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight loginLink">Tableau de bord</a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="btn btn-light py-md-3 px-md-5 animated slideInRight loginLink">Se connecter</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -181,7 +194,8 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
                         <div class="room-item shadow rounded overflow-hidden">
                             <div class="position-relative">
-                                <img class="img-fluid" src="{{ Storage::url($room->image_url) }}" alt="">
+                                <img class="img-fluid chambre-image" src="{{ Storage::url($room->image_url) }}"
+                                    alt="">
                                 <small
                                     class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">${{ $room->prix }}/Night</small>
                             </div>
@@ -234,8 +248,8 @@
                     <h1 class="text-white mb-4">Découvrez un hôtel de luxe de marque</h1>
                     <p class="text-white mb-4"> prestigieuse, où l'élégance intemporelle rencontre l'excellence du
                         service, offrant ainsi une expérience inégalée pour les voyageurs exigeants.</p>
-                    <a href="" class="btn btn-primary py-md-3 px-md-5 me-3">Nos Chambres</a>
-                    <a href="" class="btn btn-light py-md-3 px-md-5">Reserver Maintenant</a>
+                    <a href="{{ route('rooms.index') }}" class="btn btn-primary py-md-3 px-md-5 me-3">Nos Chambres</a>
+                    <a href="{{ route('rooms.index') }}" class="btn btn-light py-md-3 px-md-5">Reserver Maintenant</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -364,107 +378,9 @@
     </div>
     <!-- Service End -->
 
+    @include('partials.testimonials')
 
-    <!-- Testimonial Start -->
-    <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="owl-carousel testimonial-carousel py-5">
-                @foreach ($comments as $comment)
-                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <p>{{ $comment->content }}</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded" src="{{ asset('img/user.jpg') }}"
-                                style="width: 45px; height: 45px;">
-                            <div class="ps-3">
-                                <h6 class="fw-bold mb-1">{{ $comment->user->name }}</h6>
-                                <small>{{ $comment->user->email }}</small>
-                            </div>
-                        </div>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <!-- Testimonial End -->
+    @include('partials.events')
 
-
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="section-title text-center text-primary text-uppercase">Evènements</h6>
-                <h1 class="mb-5">Participer à nos <span class="text-primary text-uppercase">évènements</span></h1>
-            </div>
-            <div class="row g-4">
-                @forelse ($events as $event)
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded shadow overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="{{ Storage::url($event->image_url) }}" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <small>{{ $event->getDateAttribute($event->date) }}</small>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">{{ $event->name }}</h5>
-                                <small>{{ $event->description }}</small>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                @endforelse
-            </div>
-        </div>
-        <!-- Team End -->
-
-
-        @auth
-            <!-- Newsletter Start -->
-            <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="justify-content-center">
-                    <div class="col-lg-10 border rounded p-1">
-                        <div class="border rounded text-center p-1 flex-column">
-                            <div class="bg-white rounded text-center p-5">
-                                <h4 class="mb-4">Ajouter un <span class="text-primary text-uppercase">commentaire</span>
-                                </h4>
-                                <form action="{{ route('comments.store') }}" method="post" class="">
-                                    @method('post')
-                                    @csrf
-                                    <div class="mb-3">
-                                        <textarea name="content" id="" cols="50" rows="3" placeholder="Votre commentaire"></textarea>
-                                    </div>
-                                    <div class=" mt-3 text-center">
-                                        <button type="submit" class="btn btn-primary">Soumettre</button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Newsletter Start -->
-        @else
-            <!-- Newsletter Start -->
-            <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10 border rounded p-1">
-                        <div class="border rounded text-center p-1">
-                            <div class="bg-white rounded text-center p-5">
-                                <h4 class="mb-4">Abonnez-vous à notre <span
-                                        class="text-primary text-uppercase">Newsletter</span></h4>
-                                <div class="position-relative mx-auto" style="max-width: 400px;">
-                                    <input class="form-control w-100 py-3 ps-4 pe-5" type="text"
-                                        placeholder="Enter your email">
-                                    <button type="button"
-                                        class="btn btn-primary py-2 px-3 position-absolute top-0 end-0 mt-2 me-2">Soumettre</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Newsletter Start -->
-        @endauth
-    @endsection
+    @include('partials.newsletter')
+@endsection

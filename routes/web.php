@@ -23,18 +23,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AboutController::class, 'home'])->name('welcome');
 
-Route::get('/about', function () {
-    return view('pages.about');
-})->name('about');
+Route::get('/about', [AboutController::class, 'about'])->name('about');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 Route::get('/team', function () {
     return view('pages.team');
 })->name('team');
-Route::get('/services', function () {
-    return view('pages.service');
-})->name('services');
+Route::get('/services', [AboutController::class, 'services'])->name('services');
 Route::get('/testimonials', function () {
     return view('pages.testimonial');
 })->name('testimonials');

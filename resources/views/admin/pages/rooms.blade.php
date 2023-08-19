@@ -11,16 +11,15 @@
         @method('post')
         @csrf
         <!--<div class="dropzone" id="dropzone">
-                                                                                                                                                                                                            <p>Cliquez ici ou faites glisser une image ici pour ajouter l'image de la chambre
-                                                                                                                                                                                                                <img class="resizeimg" src="../../images/image.png">
-                                                                                                                                                                                                            </p>
-                                                                                                                                                                                                            <input name="image" type="file" id="fileInput" style="display: none;">
-                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                <p>Cliquez ici ou faites glisser une image ici pour ajouter l'image de la chambre
+                                                                                                                                                                                                                    <img class="resizeimg" src="../../images/image.png">
+                                                                                                                                                                                                                </p>
+                                                                                                                                                                                                                <input name="image" type="file" id="fileInput" style="display: none;">                                                                                                                                                                 </div>
 
-                                                                                                                                                                                                        <div class="button-container">
-                                                                                                                                                                                                            <button id="viewButton" style="display: none;">Voir l'image</button>
-                                                                                                                                                                                                            <button id="deleteButton" style="display: none;">Supprimer l'image</button>
-                                                                                                                                                                                                        </div>-->
+                                                                                                                                                                                                            <div class="button-container">
+                                                                                                                                                                                                                <button id="viewButton" style="display: none;">Voir l'image</button>
+                                                                                                                                                                                                                <button id="deleteButton" style="display: none;">Supprimer l'image</button>
+                                                                                                                                                                                                            </div>-->
         <div>
             <input type="file" name="image">
         </div>

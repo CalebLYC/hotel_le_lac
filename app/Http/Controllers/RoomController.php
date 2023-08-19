@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class RoomController extends Controller
 
     public function index(){
         $rooms = Room::all();
-        return view('pages.rooms', ['rooms' => $rooms]);
+        $comments = Comment::all();
+        return view('pages.rooms', ['rooms' => $rooms, 'comments' => $comments]);
     }
 
     public function create(){
